@@ -1,5 +1,17 @@
-name = "cf-docker-proxy"
-compatibility_date = "2023-12-01"
+name = "cf-docker-proxy" 
+account_id = "9b9d1e2a65ec8a60f70646c5fe18eafb"
+workers_dev = true
+
+compatibility_date = "2025-06-14"
+
+main = "dist/main.js"
+type = "esm"
+
+[build]
+command = "npm install && npm run build"
+
+[vars]
+CUSTOM_DOMAIN = "993800.xyz"
 
 [dev]
 ip = "0.0.0.0"
