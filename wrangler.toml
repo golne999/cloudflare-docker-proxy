@@ -23,13 +23,13 @@ name = "cloudflare-docker-proxy"
 
 # 部署的自定义加速子域名映射
 routes = [
-  { pattern = "docker.993800.xyz/*", custom_domain = true },
-  { pattern = "ghcr.993800.xyz/*", custom_domain = true },
-  { pattern = "quay.993800.xyz/*", custom_domain = true },
-  { pattern = "gcr.993800.xyz/*", custom_domain = true },
-  { pattern = "k8s-gcr.993800.xyz/*", custom_domain = true },
-  { pattern = "k8s.993800.xyz/*", custom_domain = true },
-  { pattern = "cloudsmith.993800.xyz/*", custom_domain = true }
+  { pattern = "docker.993800.xyz", custom_domain = true },
+  { pattern = "ghcr.993800.xyz", custom_domain = true },
+  { pattern = "quay.993800.xyz", custom_domain = true },
+  { pattern = "gcr.993800.xyz", custom_domain = true },
+  { pattern = "k8s-gcr.993800.xyz", custom_domain = true },
+  { pattern = "k8s.993800.xyz", custom_domain = true },
+  { pattern = "cloudsmith.993800.xyz", custom_domain = true }
 ]
 
 [env.production.vars]
