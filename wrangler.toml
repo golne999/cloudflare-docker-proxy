@@ -1,51 +1,39 @@
-name = "cf-docker-proxy" 
-account_id = "9b9d1e2a65ec8a60f70646c5fe18eafb"
-workers_dev = true
+# 项目基本信息
+name = "cf-docker-proxy"
+account_id = "你的账户ID"   # <<< 替换为 Cloudflare 的真实账号 ID
+workers_dev = false         # 生产环境建议关闭 dev 子域名
 
 compatibility_date = "2025-06-14"
-
 main = "dist/main.js"
 type = "esm"
 
+# 构建指令
 [build]
 command = "npm install && npm run build"
 
+# 默认变量（可选）
 [vars]
 CUSTOM_DOMAIN = "993800.xyz"
 
-[dev]
-ip = "0.0.0.0"
-port = 8787
-local_protocol = "http"
-
-[env.vars]
-CUSTOM_DOMAIN = "libcuda.so"
-
-[env.dev.vars]
-MODE = "debug"
-TARGET_UPSTREAM = "https://registry-1.docker.io"
-CUSTOM_DOMAIN = "exmaple.com"
-
+# 生产环境配置
 [env.production]
 name = "cloudflare-docker-proxy"
-# routes = [
-#   { pattern = "docker.libcuda.so", custom_domain = true },
-#   { pattern = "quay.libcuda.so", custom_domain = true },
-#   { pattern = "gcr.libcuda.so", custom_domain = true },
-#   { pattern = "k8s-gcr.libcuda.so", custom_domain = true },
-#   { pattern = "k8s.libcuda.so", custom_domain = true },
-#   { pattern = "ghcr.libcuda.so", custom_domain = true },
-#   { pattern = "cloudsmith.libcuda.so", custom_domain = true },
-# ]
+
+# 所有映射的加速域名列表
+routes = [
+  { pattern = "docker.993800.xyz/*", custom_domain = true },
+  { pattern = "ghcr.993800.xyz/*", custom_domain = true },
+  { pattern = "quay.993800.xyz/*", custom_domain = true },
+  { pattern = "gcr.993800.xyz/*", custom_domain = true },
+  { pattern = "k8s-gcr.993800.xyz/*", custom_domain = true },
+  { pattern = "k8s.993800.xyz/*", custom_domain = true },
+  { pattern = "cloudsmith.993800.xyz/*", custom_domain = true }
+]
 
 [env.production.vars]
 MODE = "production"
-TARGET_UPSTREAM = ""
 
-[env.staging]
-name = "cloudflare-docker-proxy-staging"
-# route = { pattern = "docker-staging.libcuda.so", custom_domain = true }
+# 默认代理 docker 官方仓库，你也可以换掉
+TARGET_UPSTREAM = "https://registry-1.docker.io"
 
-[env.staging.vars]
-MODE = "staging"
-TARGET_UPSTREAM = ""
+CUSTOM_DOMAIN = "993800.xyz"
