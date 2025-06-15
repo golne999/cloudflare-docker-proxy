@@ -1,36 +1,38 @@
-# 项目基本信息
+# 项目名称 & 账户配置
 name = "cf-docker-proxy"
-account_id = "${CF_ACCOUNT_ID}"        #  从 .env 读取
-workers_dev = false                    # 生产环境建议关闭 dev 子域名
+account_id = "9b9d1e2a65ec8a60f70646c5fe18eafb"
+workers_dev = false  # 不使用 xxx.username.workers.dev 子域
 
+# 兼容日期（保持使用最新特性）
 compatibility_date = "2025-06-15"
-main = "dist/main.js"
-type = "esm"
 
-# 构建指令
+# 主文件路径（构建后输出）
+main = "dist/main.js"
+
+# 构建命令
 [build]
 command = "npm install && npm run build"
 
-# 默认变量（本地预览时）
+# 默认环境变量（可以用于开发测试）
 [vars]
-CUSTOM_DOMAIN = "${CUSTOM_DOMAIN}"
+CUSTOM_DOMAIN = "993800.xyz"
 
 # 生产环境配置
 [env.production]
 name = "cloudflare-docker-proxy"
 
-# 所有映射的加速域名列表（Cloudflare Pages绑定用）
+# 部署的自定义加速子域名映射
 routes = [
-  { pattern = "docker.${CUSTOM_DOMAIN}/*", custom_domain = true },
-  { pattern = "ghcr.${CUSTOM_DOMAIN}/*", custom_domain = true },
-  { pattern = "quay.${CUSTOM_DOMAIN}/*", custom_domain = true },
-  { pattern = "gcr.${CUSTOM_DOMAIN}/*", custom_domain = true },
-  { pattern = "k8s-gcr.${CUSTOM_DOMAIN}/*", custom_domain = true },
-  { pattern = "k8s.${CUSTOM_DOMAIN}/*", custom_domain = true },
-  { pattern = "cloudsmith.${CUSTOM_DOMAIN}/*", custom_domain = true }
+  { pattern = "docker.993800.xyz/*", custom_domain = true },
+  { pattern = "ghcr.993800.xyz/*", custom_domain = true },
+  { pattern = "quay.993800.xyz/*", custom_domain = true },
+  { pattern = "gcr.993800.xyz/*", custom_domain = true },
+  { pattern = "k8s-gcr.993800.xyz/*", custom_domain = true },
+  { pattern = "k8s.993800.xyz/*", custom_domain = true },
+  { pattern = "cloudsmith.993800.xyz/*", custom_domain = true }
 ]
 
 [env.production.vars]
 MODE = "production"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
-CUSTOM_DOMAIN = "${CUSTOM_DOMAIN}"
+CUSTOM_DOMAIN = "993800.xyz"
