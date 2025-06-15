@@ -1,6 +1,6 @@
 # 项目基本信息
 name = "cf-docker-proxy"
-account_id = "${CF_ACCOUNT_ID}"        # ✅ 从 .env 读取
+account_id = "${CF_ACCOUNT_ID}"        #  从 .env 读取
 workers_dev = false                    # 生产环境建议关闭 dev 子域名
 
 compatibility_date = "2025-06-15"
