@@ -1,18 +1,13 @@
 name = "cloudflare-docker-proxy"
 account_id = "9b9d1e2a65ec8a60f70646c5fe18eafb"
-compatibility_date = "2025-06-15"
-
+compatibility_date = "2024-12-01"
 main = "dist/main.js"
-
-[env.production]
-vars = { 
-  MODE = "production",
-  TARGET_UPSTREAM = "https://registry-1.docker.io",
-  CUSTOM_DOMAIN = "993800.xyz"
-}
 
 [build]
 command = "npm install && npm run build"
+
+[env.production]
+vars = { MODE = "production",  TARGET_UPSTREAM = "https://registry-1.docker.io", CUSTOM_DOMAIN = "993800.xyz" }
 
 
 # name = "cloudflare-docker-proxy"
